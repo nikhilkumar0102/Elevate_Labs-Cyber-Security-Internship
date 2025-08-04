@@ -1,4 +1,4 @@
-# Network Port Scanner
+# Network Scanning and Analysis
 
 This repository contains tools, scripts, and documentation for scanning a local network to identify open ports and understand network exposure. This project is part of the Elevate Labs internship task, designed to help learners explore network security concepts using `Nmap` and optionally `Wireshark`.
 
