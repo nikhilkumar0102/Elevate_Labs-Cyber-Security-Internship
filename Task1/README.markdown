@@ -1,4 +1,4 @@
-# Network Port Scanner
+<img width="1913" height="1082" alt="image" src="https://github.com/user-attachments/assets/16116671-2d04-4d38-b2cd-c5e8a7bd5ad4" /># Network Port Scanner
 This repository contains tools, scripts, and documentation for scanning a local network to identify open ports and understand network exposure. This project is part of the Elevate Labs internship task, designed to help learners explore network security concepts using `Nmap` and optionally `Wireshark`.
 
 ## Objective
@@ -18,6 +18,8 @@ To complete this task, ensure the following tools and permissions are in place:
 ![NetScan Banner](Screenshot/nmap.png)
 
 - **Wireshark (Optional)**: A packet analysis tool for capturing and inspecting network traffic. Download from [wireshark.org](https://www.wireshark.org/download.html).
+
+![NetScan Banner](Screenshot/nmap9.png)
   
 - **Permissions**: You must have explicit authorization to scan the target network. Unauthorized scanning is illegal and unethical.
 
@@ -93,6 +95,7 @@ Follow these steps to perform the network scan and analyze results:
      ```plaintext
      ip.addr == 192.168.1.0/24
      ```
+     ![NetScan Banner](Screenshot/nmap6.png)
    - Start the packet capture, then run the Nmap scan.
    - Analyze captured packets to observe TCP SYN packets and responses.
    - Save screenshots of the packet list or specific packet details in the `screenshots/` directory.
@@ -101,8 +104,8 @@ Follow these steps to perform the network scan and analyze results:
 ## Screenshots
 The `screenshots/` directory is designated for storing screenshots of Nmap and Wireshark outputs to visually document the scanning process. Examples include:
 - **Nmap Screenshots**:
-  - Terminal output of `scan_network.py <ip-range>` showing scanned hosts and open ports.
-  - Browser view of `scan_results.html` displaying formatted scan results.
+  - Terminal output of `nmap -sS <ip-range>` showing scanned hosts and open ports.
+  - View of `scan_results.txt` displaying formatted scan results.
 - **Wireshark Screenshots**:
   - Packet capture window filtered for the scanned IP range, showing TCP SYN packets and responses.
   - Detailed view of a specific packet (e.g., TCP handshake for an open port).
@@ -111,12 +114,12 @@ The `screenshots/` directory is designated for storing screenshots of Nmap and W
 1. **Nmap**:
    - Run `nmap -sS 192.168.1.0/24` and capture the terminal window using a screenshot tool (e.g., Snipping Tool on Windows, `Cmd+Shift+4` on macOS).
    - Open `scan_results.html` in a browser and screenshot the formatted output.
-   - Save as `screenshots/nmap_terminal.png` or `screenshots/nmap_html.png`.
+   - Save as `screenshots/nmap1.png` or `screenshots/nmap2.png`.
 2. **Wireshark**:
    - Start Wireshark, select the appropriate network interface, and apply the filter `ip.addr == 192.168.1.0/24`.
    - Run the Nmap scan while capturing packets.
    - Screenshot the packet list or a specific packet’s details (e.g., TCP SYN/ACK for an open port).
-   - Save as `screenshots/wireshark_capture.png` or `screenshots/wireshark_packet_details.png`.
+   - Save as `screenshots/nmap1.png` or `screenshots/nmap2.png`.
 3. **Storage**: Store screenshots in the `screenshots/` directory. These are excluded from Git commits via `.gitignore`.
 4. **Usage**: Reference screenshots in reports, presentations, or documentation for the internship task, ensuring no sensitive details (e.g., IP addresses, hostnames) are exposed publicly.
 
