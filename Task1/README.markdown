@@ -63,16 +63,21 @@ Follow these steps to perform the network scan and analyze results:
    nmap -sS <ip-address> -o scan_results.txt 
    ```
 
-   ![NetScan Banner](Screenshot/nmap4.png)
+   ![NetScan Banner](Screenshot/nmap7.png)
    
    - The script uses Nmap’s `-sS` (TCP SYN scan) for stealthy and efficient scanning.
    - Results are saved to `scan_results.txt` (raw text) and `scan_results.html` (formatted HTML).
+  
 
 4. **Analyze Scan Results**:
+
+   ![NetScan Banner](Screenshot/nmap8.png)
+   
    - **Text Output**: Open `scan_results.txt` to view raw scan results, including:
      - Host IP addresses and hostnames.
      - Open ports, their states (e.g., `open`, `closed`, `filtered`), and associated services (e.g., `http`, `ssh`).
-   - **HTML Output**: Open `scan_results.html` in a browser for a formatted view of the scan results.
+   - **HTML Output**: Open `xdg-open scan_results.html` in a browser for a formatted view of the scan results.
+   
    - Research common services using [IANA Service Names and Port Numbers](https://www.iana.org/assignments/service-names-port-numbers/):
      - Port 80: HTTP (web server).
      - Port 22: SSH (secure shell).
@@ -82,7 +87,7 @@ Follow these steps to perform the network scan and analyze results:
      - Exposed services (e.g., 3389/RDP may allow remote access if misconfigured).
      - Document findings and recommend mitigations (e.g., closing unused ports, enabling firewalls).
 
-5. **Optional Wireshark Analysis**:
+6. **Optional Wireshark Analysis**:
    - Launch Wireshark and select the network interface connected to your local network.
    - Apply a filter to capture traffic for the scanned IP range:
      ```plaintext
