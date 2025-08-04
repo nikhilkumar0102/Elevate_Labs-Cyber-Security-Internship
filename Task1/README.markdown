@@ -1,4 +1,5 @@
-<img width="1913" height="1082" alt="image" src="https://github.com/user-attachments/assets/16116671-2d04-4d38-b2cd-c5e8a7bd5ad4" /># Network Port Scanner
+# Network Port Scanner
+
 This repository contains tools, scripts, and documentation for scanning a local network to identify open ports and understand network exposure. This project is part of the Elevate Labs internship task, designed to help learners explore network security concepts using `Nmap` and optionally `Wireshark`.
 
 ## Objective
@@ -93,7 +94,7 @@ Follow these steps to perform the network scan and analyze results:
    - Launch Wireshark and select the network interface connected to your local network.
    - Apply a filter to capture traffic for the scanned IP range:
      ```plaintext
-     ip.addr == 192.168.1.0/24
+     ip.addr == 10.52.124.0/24
      ```
      ![NetScan Banner](Screenshot/nmap6.png)
    - Start the packet capture, then run the Nmap scan.
@@ -103,33 +104,40 @@ Follow these steps to perform the network scan and analyze results:
 
 ## Screenshots
 The `screenshots/` directory is designated for storing screenshots of Nmap and Wireshark outputs to visually document the scanning process. Examples include:
+
 - **Nmap Screenshots**:
   - Terminal output of `nmap -sS <ip-range>` showing scanned hosts and open ports.
   - View of `scan_results.txt` displaying formatted scan results.
+    
 - **Wireshark Screenshots**:
   - Packet capture window filtered for the scanned IP range, showing TCP SYN packets and responses.
   - Detailed view of a specific packet (e.g., TCP handshake for an open port).
 
 **Instructions for Capturing Screenshots**:
 1. **Nmap**:
-   - Run `nmap -sS 192.168.1.0/24` and capture the terminal window using a screenshot tool (e.g., Snipping Tool on Windows, `Cmd+Shift+4` on macOS).
+   - Run `nmap -sS 10.52.124.0/24` and capture the terminal window using a screenshot tool (e.g., Snipping Tool on Windows, `Cmd+Shift+4` on macOS).
    - Open `scan_results.html` in a browser and screenshot the formatted output.
    - Save as `screenshots/nmap1.png` or `screenshots/nmap2.png`.
+     
 2. **Wireshark**:
-   - Start Wireshark, select the appropriate network interface, and apply the filter `ip.addr == 192.168.1.0/24`.
+   - Start Wireshark, select the appropriate network interface, and apply the filter `ip.addr == 10.52.124.0/24`.
    - Run the Nmap scan while capturing packets.
    - Screenshot the packet list or a specific packet’s details (e.g., TCP SYN/ACK for an open port).
    - Save as `screenshots/nmap1.png` or `screenshots/nmap2.png`.
+     
 3. **Storage**: Store screenshots in the `screenshots/` directory. These are excluded from Git commits via `.gitignore`.
 4. **Usage**: Reference screenshots in reports, presentations, or documentation for the internship task, ensuring no sensitive details (e.g., IP addresses, hostnames) are exposed publicly.
 
 ## Security and Privacy Considerations
 - **Legal Compliance**: Scanning networks without permission is illegal and unethical. Ensure you have explicit authorization from the network owner before scanning.
+  
 - **Data Sensitivity**: Scan results (`scan_results.txt`, `scan_results.html`) and screenshots may contain sensitive information, such as IP addresses, hostnames, or open services. Do not share these publicly or commit them to GitHub.
+  
 - **Risk Assessment**:
   - Open ports like 23 (Telnet) or 445 (SMB) may indicate vulnerabilities.
   - Exposed services (e.g., 3389/RDP) could allow unauthorized access if not secured.
   - Research each open port’s service and assess whether it should remain open or be closed (e.g., via firewall rules).
+    
 - **Mitigation**: Close unnecessary ports, update services, and enable firewalls to reduce network exposure.
 
 ## Example Workflow
@@ -138,7 +146,7 @@ The `screenshots/` directory is designated for storing screenshots of Nmap and W
    ipconfig  # Windows
    ifconfig  # Linux/macOS
    ```
-   Example output: IP `192.168.1.100`, subnet mask `255.255.255.0` → Range `192.168.1.0/24`.
+   Example output: IP `10.52.124.51`, subnet mask `255.255.255.0` → Range `192.168.1.0/24`.
 
 2. Run the scan:
    ```bash
@@ -166,11 +174,10 @@ The `screenshots/` directory is designated for storing screenshots of Nmap and W
 ## Troubleshooting
 - **Nmap Error**: If `nmap: command not found`, ensure Nmap is installed and added to your system’s PATH.
 - **Permission Denied**: Run the script with `sudo` if Nmap requires elevated privileges (common on Linux).
+  
   ```bash
   sudo nmap -sS 192.168.1.0/24
   ```
 - **Wireshark No Packets**: Ensure the correct network interface is selected and the filter is properly set.
-- **Invalid IP Range**: Verify the IP range format (e.g., `192.168.1.0/24`) matches your network.
+- **Invalid IP Range**: Verify the IP range format (e.g., `192.168.1.0/24`) matches your network as here mine is `10.52.124.0/24` .
 
-## License
-MIT License. See `LICENSE` for details.
