@@ -1,58 +1,35 @@
 # Network Port Scanner
-This repository contains tools, scripts, and documentation for scanning a local network to identify open ports and understand network exposure. This project is part of the Elevate Labs internship task, designed to help learners explore network security concepts using Nmap and optionally Wireshark.
+This repository contains tools, scripts, and documentation for scanning a local network to identify open ports and understand network exposure. This project is part of the Elevate Labs internship task, designed to help learners explore network security concepts using `Nmap` and optionally `Wireshark`.
 
 ## Objective
 The goal is to learn how to discover open ports on devices within a local network to assess network exposure. By identifying open ports and their associated services, users can evaluate potential security risks and gain insights into network configuration.
 
 ## Contents
-- `scan_network.py`: Python script to automate Nmap TCP SYN scanning and save results in text and HTML formats.
-- `scan_results.txt`: Placeholder for raw Nmap scan output (not committed for security reasons).
-- `scan_results.html`: Placeholder for HTML-formatted Nmap scan output (not committed).
-- `screenshots/`: Directory for storing Nmap and Wireshark screenshots (not committed).
-- `requirements.txt`: Python dependencies required for the script.
-- `.gitignore`: Ensures sensitive files (scan results and screenshots) are not committed.
-- `LICENSE`: MIT License for the repository.
+- `scan_results.txt`: Placeholder for raw Nmap scan output.
+- `scan_results.html`: Placeholder for HTML-formatted Nmap scan output .
+- `screenshots/`: Directory for storing Nmap and Wireshark screenshots .
 
 ## Prerequisites
 To complete this task, ensure the following tools and permissions are in place:
-- **Nmap**: A powerful open-source tool for network scanning and discovery. Download and install from [nmap.org](https://nmap.org/download.html).
-- **Python 3.x**: Required to run the `scan_network.py` script. Install from [python.org](https://www.python.org/downloads/).
+- **Nmap**: A powerful open-source tool for network scanning and discovery. Download and install from
+![NetScan Banner](Screenshot/netscan-banner.png)
+   [nmap.org](https://nmap.org/download.html).
 - **Wireshark (Optional)**: A packet analysis tool for capturing and inspecting network traffic. Download from [wireshark.org](https://www.wireshark.org/download.html).
 - **Permissions**: You must have explicit authorization to scan the target network. Unauthorized scanning is illegal and unethical.
-- **Python Libraries**: Install the `python-nmap` library to interface with Nmap programmatically.
 
 ## Setup
 Follow these steps to set up the project environment:
 
-1. **Clone the Repository**:
-   ```bash
-   git clone https://github.com/your-username/network-port-scanner.git
-   cd network-port-scanner
-   ```
-
-2. **Install Python Dependencies**:
-   Install the required Python libraries listed in `requirements.txt`:
-   ```bash
-   pip install -r requirements.txt
-   ```
-   This installs `python-nmap`, which allows the script to interact with Nmap.
-
-3. **Install Nmap**:
+1. **Install Nmap**:
    - **Windows**: Download the installer from [nmap.org](https://nmap.org/download.html) and follow the setup wizard.
    - **Linux**: Install via package manager (e.g., `sudo apt-get install nmap` for Ubuntu).
    - **macOS**: Use Homebrew (`brew install nmap`) or download from the Nmap website.
    - Verify installation: `nmap --version`.
 
-4. **Install Wireshark (Optional)**:
+2. **Install Wireshark (Optional)**:
    - Download from [wireshark.org](https://www.wireshark.org/download.html) and install.
    - Ensure you have permissions to capture packets (e.g., on Linux, add your user to the `wireshark` group).
    - Verify installation: Open Wireshark and confirm it can capture packets.
-
-5. **Create Screenshots Directory**:
-   ```bash
-   mkdir screenshots
-   ```
-   This directory is included in `.gitignore` to prevent committing sensitive screenshots.
 
 ## Usage
 Follow these steps to perform the network scan and analyze results:
@@ -77,11 +54,7 @@ Follow these steps to perform the network scan and analyze results:
 2. **Run the Nmap Scan**:
    Execute the provided Python script to perform a TCP SYN scan:
    ```bash
-   python scan_network.py <your-ip-range>
-   ```
-   Example:
-   ```bash
-   python scan_network.py 192.168.1.0/24
+   nmap -sS <ip-address> -o scan_results.txt
    ```
    - The script uses Nmap’s `-sS` (TCP SYN scan) for stealthy and efficient scanning.
    - Results are saved to `scan_results.txt` (raw text) and `scan_results.html` (formatted HTML).
@@ -123,7 +96,7 @@ The `screenshots/` directory is designated for storing screenshots of Nmap and W
 
 **Instructions for Capturing Screenshots**:
 1. **Nmap**:
-   - Run `python scan_network.py 192.168.1.0/24` and capture the terminal window using a screenshot tool (e.g., Snipping Tool on Windows, `Cmd+Shift+4` on macOS).
+   - Run `nmap -sS 192.168.1.0/24` and capture the terminal window using a screenshot tool (e.g., Snipping Tool on Windows, `Cmd+Shift+4` on macOS).
    - Open `scan_results.html` in a browser and screenshot the formatted output.
    - Save as `screenshots/nmap_terminal.png` or `screenshots/nmap_html.png`.
 2. **Wireshark**:
@@ -133,15 +106,6 @@ The `screenshots/` directory is designated for storing screenshots of Nmap and W
    - Save as `screenshots/wireshark_capture.png` or `screenshots/wireshark_packet_details.png`.
 3. **Storage**: Store screenshots in the `screenshots/` directory. These are excluded from Git commits via `.gitignore`.
 4. **Usage**: Reference screenshots in reports, presentations, or documentation for the internship task, ensuring no sensitive details (e.g., IP addresses, hostnames) are exposed publicly.
-
-## Script Details
-- **File**: `scan_network.py`
-- **Purpose**: Automates Nmap TCP SYN scanning using the `python-nmap` library.
-- **Functionality**:
-  - Performs a stealthy TCP SYN scan (`-sS`) to detect open ports without completing TCP handshakes.
-  - Saves results in `scan_results.txt` (raw text) and `scan_results.html` (XML-based HTML output).
-  - Handles errors for invalid IP ranges or missing Nmap installation (e.g., requires sudo on some systems).
-- **Dependencies**: Requires `python-nmap` (listed in `requirements.txt`).
 
 ## Security and Privacy Considerations
 - **Legal Compliance**: Scanning networks without permission is illegal and unethical. Ensure you have explicit authorization from the network owner before scanning.
@@ -162,7 +126,7 @@ The `screenshots/` directory is designated for storing screenshots of Nmap and W
 
 2. Run the scan:
    ```bash
-   python scan_network.py 192.168.1.0/24
+   nmap -sS 192.168.1.0/24
    ```
    - Output files: `scan_results.txt`, `scan_results.html`.
    - Example result in `scan_results.txt`:
@@ -187,7 +151,7 @@ The `screenshots/` directory is designated for storing screenshots of Nmap and W
 - **Nmap Error**: If `nmap: command not found`, ensure Nmap is installed and added to your system’s PATH.
 - **Permission Denied**: Run the script with `sudo` if Nmap requires elevated privileges (common on Linux).
   ```bash
-  sudo python scan_network.py 192.168.1.0/24
+  sudo nmap -sS 192.168.1.0/24
   ```
 - **Wireshark No Packets**: Ensure the correct network interface is selected and the filter is properly set.
 - **Invalid IP Range**: Verify the IP range format (e.g., `192.168.1.0/24`) matches your network.
