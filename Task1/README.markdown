@@ -11,10 +11,14 @@ The goal is to learn how to discover open ports on devices within a local networ
 
 ## Prerequisites
 To complete this task, ensure the following tools and permissions are in place:
-- **Nmap**: A powerful open-source tool for network scanning and discovery. Download and install from
-![NetScan Banner](Screenshot/netscan-banner.png)
-   [nmap.org](https://nmap.org/download.html).
+- **Nmap**: A powerful open-source tool for network scanning and discovery. Download and install from: [nmap.org](https://nmap.org/download.html).
+  
+![NetScan Banner](Screenshot/nmap.png)
+
+![NetScan Banner](Screenshot/nmap.png)
+
 - **Wireshark (Optional)**: A packet analysis tool for capturing and inspecting network traffic. Download from [wireshark.org](https://www.wireshark.org/download.html).
+  
 - **Permissions**: You must have explicit authorization to scan the target network. Unauthorized scanning is illegal and unethical.
 
 ## Setup
@@ -49,18 +53,22 @@ Follow these steps to perform the network scan and analyze results:
      ```bash
      ip addr
      ```
-     Find the IP address and subnet (e.g., `192.168.1.0/24`).
+  
+     ![NetScan Banner](Screenshot/nmap2.png)
+              Find the IP address and subnet (e.g., `192.168.1.0/24`).
 
 2. **Run the Nmap Scan**:
    Execute the provided Python script to perform a TCP SYN scan:
    ```bash
-   nmap -sS <ip-address> -o scan_results.txt
+   nmap -sS <ip-address> -o scan_results.txt 
    ```
+
+   ![NetScan Banner](Screenshot/nmap4.png)
+   
    - The script uses Nmap’s `-sS` (TCP SYN scan) for stealthy and efficient scanning.
    - Results are saved to `scan_results.txt` (raw text) and `scan_results.html` (formatted HTML).
-   - **Important**: These files are listed in `.gitignore` to prevent accidental commits. Do not share them publicly.
 
-3. **Analyze Scan Results**:
+4. **Analyze Scan Results**:
    - **Text Output**: Open `scan_results.txt` to view raw scan results, including:
      - Host IP addresses and hostnames.
      - Open ports, their states (e.g., `open`, `closed`, `filtered`), and associated services (e.g., `http`, `ssh`).
@@ -74,7 +82,7 @@ Follow these steps to perform the network scan and analyze results:
      - Exposed services (e.g., 3389/RDP may allow remote access if misconfigured).
      - Document findings and recommend mitigations (e.g., closing unused ports, enabling firewalls).
 
-4. **Optional Wireshark Analysis**:
+5. **Optional Wireshark Analysis**:
    - Launch Wireshark and select the network interface connected to your local network.
    - Apply a filter to capture traffic for the scanned IP range:
      ```plaintext
