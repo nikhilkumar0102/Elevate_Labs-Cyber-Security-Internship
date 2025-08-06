@@ -16,18 +16,23 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
 
 1. **Open the .eml File Safely**
 
+   ![Examples:](screenshot/1.png)
+
    - Upload the `.eml` file to an online EML analyzer or open it in a local email client (e.g., Thunderbird) or text editor.
    - Do not click links or open attachments to avoid malware.
 
-2. **Check Email Headers**
+3. **Check Email Headers**
 
    - Use the EML analyzer to parse headers (e.g., `From`, `Return-Path`, `Received`).
    - Look for:
-     - **Spoofed Sender**: Mismatched `From` and `Return-Path` or fake domains (e.g., "paypa1.com" instead of "paypal.com").
+
+     ![Examples:](screenshot/2.png)
+     
+     - **Spoofed Sender**: Mismatched `From` and `Return-Path` or fake domains (e.g., ).
      - **Suspicious Servers**: Untrusted mail servers in `Received` fields.
      - **Authentication Issues**: Failed SPF, DKIM, or DMARC results.
 
-3. **Review Email Content**
+4. **Review Email Content**
 
    - Check the email body for phishing signs:
      - **Sender Email**: Does it match the claimed sender’s domain?
@@ -38,13 +43,13 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
      - **Attachments**: Unsolicited files like `.zip` or `.exe`.
      - **Sensitive Info Requests**: Asks for passwords or financial details.
 
-4. **Verify Links and Attachments**
+5. **Verify Links and Attachments**
 
    - **Links**: Use the analyzer’s URL check or tools like VirusTotal to scan URLs without clicking.
    - **Attachments**: Scan with antivirus before opening; avoid executables (e.g., `.exe`).
    - **Domains**: Check linked domains with WHOIS for recent or suspicious registrations.
 
-5. **Spot Social Engineering**
+6. **Spot Social Engineering**
 
    - Look for tactics like:
      - **Impersonation**: Posing as a bank, coworker, or authority.
@@ -52,7 +57,7 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
      - **Temptation**: Fake rewards or offers to lure clicks.
      - **Authority**: Mimicking CEOs or officials to intimidate.
 
-6. **Write the Report**
+7. **Write the Report**
 
    - Summarize findings in a clear report:
      - Header issues (e.g., spoofed sender, failed DKIM).
