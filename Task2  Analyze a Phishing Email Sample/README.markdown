@@ -18,6 +18,8 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
 
    ![Examples:](screenshot/1.png)
 
+   ![Examples:](screenshot/2.png)
+
    - Upload the `.eml` file to an online EML analyzer or open it in a local email client (e.g., Thunderbird) or text editor.
    - Do not click links or open attachments to avoid malware.
 
@@ -26,13 +28,13 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
    - Use the EML analyzer to parse headers (e.g., `From`, `Return-Path`, `Received`).
    - Look for:
 
-     ![Examples:](screenshot/2.png)
-     
+   ![Examples:](screenshot/3.png)
+   
      - **Spoofed Sender**: Mismatched `From` and `Return-Path` or fake domains (e.g., ).
      - **Suspicious Servers**: Untrusted mail servers in `Received` fields.
      - **Authentication Issues**: Failed SPF, DKIM, or DMARC results.
 
-4. **Review Email Content**
+5. **Review Email Content**
 
    - Check the email body for phishing signs:
      - **Sender Email**: Does it match the claimed sender’s domain?
@@ -43,13 +45,13 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
      - **Attachments**: Unsolicited files like `.zip` or `.exe`.
      - **Sensitive Info Requests**: Asks for passwords or financial details.
 
-5. **Verify Links and Attachments**
+6. **Verify Links and Attachments**
 
    - **Links**: Use the analyzer’s URL check or tools like VirusTotal to scan URLs without clicking.
    - **Attachments**: Scan with antivirus before opening; avoid executables (e.g., `.exe`).
    - **Domains**: Check linked domains with WHOIS for recent or suspicious registrations.
 
-6. **Spot Social Engineering**
+7. **Spot Social Engineering**
 
    - Look for tactics like:
      - **Impersonation**: Posing as a bank, coworker, or authority.
@@ -57,7 +59,7 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
      - **Temptation**: Fake rewards or offers to lure clicks.
      - **Authority**: Mimicking CEOs or officials to intimidate.
 
-7. **Write the Report**
+8. **Write the Report**
 
    - Summarize findings in a clear report:
      - Header issues (e.g., spoofed sender, failed DKIM).
