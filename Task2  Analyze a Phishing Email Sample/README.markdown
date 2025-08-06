@@ -29,12 +29,31 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
    - Look for:
 
    ![Examples:](screenshot/3.png)
+
+   ![Examples:](screenshot/4.png)
+
+   ![Examples:](screenshot/5.png)
+
+   
    
      - **Spoofed Sender**: Mismatched `From` and `Return-Path` or fake domains (e.g., ).
      - **Suspicious Servers**: Untrusted mail servers in `Received` fields.
      - **Authentication Issues**: Failed SPF, DKIM, or DMARC results.
+  
+     ![Examples:](screenshot/6.png)
+      
+       
+      Header Discrepancy:
+      - Return-Path: root@ubuntu-s-1vcpu-1gb-35gb-intel-sfo3-06 (actual sender)
+      - From: atendimento.com.br (claimed sender)
+      - x-sid-pra: BANCO.BRADESCO@ATENDIMENTO.COM.BR (pretending to be a bank)
+      - Red Flag: The email claims to be from a bank but was actually sent from a generic cloud server.
+  
+4. **Mail  Check for reputation**
 
-5. **Review Email Content**
+   ![Examples:](screenshot/7.png)
+
+6. **Review Email Content**
 
    - Check the email body for phishing signs:
      - **Sender Email**: Does it match the claimed sender’s domain?
@@ -44,14 +63,15 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
      - **Suspicious Links**: Hover (don’t click) to verify URLs match legitimate domains.
      - **Attachments**: Unsolicited files like `.zip` or `.exe`.
      - **Sensitive Info Requests**: Asks for passwords or financial details.
+    
 
-6. **Verify Links and Attachments**
+7. **Verify Links and Attachments**
 
    - **Links**: Use the analyzer’s URL check or tools like VirusTotal to scan URLs without clicking.
    - **Attachments**: Scan with antivirus before opening; avoid executables (e.g., `.exe`).
    - **Domains**: Check linked domains with WHOIS for recent or suspicious registrations.
 
-7. **Spot Social Engineering**
+8. **Spot Social Engineering**
 
    - Look for tactics like:
      - **Impersonation**: Posing as a bank, coworker, or authority.
@@ -59,7 +79,7 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
      - **Temptation**: Fake rewards or offers to lure clicks.
      - **Authority**: Mimicking CEOs or officials to intimidate.
 
-8. **Write the Report**
+9. **Write the Report**
 
    - Summarize findings in a clear report:
      - Header issues (e.g., spoofed sender, failed DKIM).
