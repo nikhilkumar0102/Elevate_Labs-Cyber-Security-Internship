@@ -40,7 +40,7 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
      - **Suspicious Servers**: Untrusted mail servers in `Received` fields.
      - **Authentication Issues**: Failed SPF, DKIM, or DMARC results.
   
-     ![Examples:](screenshot/6.png)
+     ![Examples:](screenshot/7.png)
       
        
       Header Discrepancy:
@@ -51,7 +51,7 @@ Examine a suspicious `.eml` file using an EML analyzer to identify phishing char
   
 4. **Mail  Check for reputation**
 
-   ![Examples:](screenshot/7.png)
+   ![Examples:](screenshot/6.png)
 
 6. **Review Email Content**
 
