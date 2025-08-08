@@ -14,6 +14,8 @@ sudo ufw enable  # Enable the firewall
 sudo ufw status  # Check status (should show "active")
 ```
 
+
+
 ## Step 2: List Current Firewall Rules
 View existing rules to understand the current configuration.
 
@@ -49,6 +51,8 @@ Verify the rule:
 sudo ufw status numbered
 ```
 
+![NetScan Banner](Screenshot/1.png)
+
 ### Expected Output
 ```
 [1] 23/tcp                   DENY IN     Anywhere
@@ -61,6 +65,8 @@ Test the Telnet block locally or remotely to confirm it’s blocked.
 ```bash
 telnet localhost 23
 ```
+
+![NetScan Banner](Screenshot/2.png)
 
 **Expected Result**: Connection fails with "Connection refused" or timeout.
 
@@ -78,11 +84,15 @@ Ensure SSH remains accessible for remote management.
 sudo ufw allow 22/tcp
 ```
 
+![NetScan Banner](Screenshot/3.png)
+
 Verify:
 
 ```bash
 sudo ufw status
 ```
+
+![NetScan Banner](Screenshot/4.png)
 
 ### Expected Output
 ```
@@ -95,6 +105,8 @@ To restore the original state, delete the Telnet block rule.
 ```bash
 sudo ufw delete deny 23/tcp
 ```
+
+![NetScan Banner](Screenshot/5.png)
 
 Alternatively, if using rule numbers:
 
