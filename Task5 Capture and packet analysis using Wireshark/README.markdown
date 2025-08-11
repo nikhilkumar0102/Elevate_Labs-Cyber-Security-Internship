@@ -11,12 +11,17 @@ This repository provides a straightforward walkthrough for using Wireshark to ca
 - Wireshark installed on your system (download from Wireshark's official site).
 - Basic understanding of network interfaces (e.g., Ethernet or Wi-Fi).
 
+
 ## Steps
 
 1. **Installation and Setup**
 
    - Install Wireshark on your system.
    - Launch Wireshark and select your active network interface (e.g., Ethernet or Wi-Fi) to start capturing packets.
+
+   ![Examples:](screenshot/6.png)
+  
+  ![Examples:](screenshot/7.png)
 
 2. **Generating and Filtering Traffic**
 
