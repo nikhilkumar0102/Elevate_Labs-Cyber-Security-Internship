@@ -6,9 +6,11 @@ This project explores the principles of creating strong, secure passwords. By te
 To understand the key factors that contribute to a strong password by creating and evaluating passwords of varying complexity using online tools, and to summarize the findings and best practices for robust password security.
 
 ## Methodology & Test Results
-The following steps were taken to analyze password strength. The tool used for this analysis was [passwordmonster.com](https://www.passwordmonster.com/), but any similar tool can be used.
+The following steps were taken to analyze password strength. The tool used for this analysis was [passwordmonster](https://www.passwordmonster.com/) and [passwordmeter](https://passwordmeter.com/) but any similar tool can be used.
 
+![Examples:](Screenshot/1.png)
 
+![Examples:](Screenshot/10.png)
 
 ### 1. Password Creation & Testing
 A series of passwords were created with increasing complexity to test how length, character types, and structure affect overall strength.
@@ -16,14 +18,28 @@ A series of passwords were created with increasing complexity to test how length
 ### 2. Strength Analysis
 Each password was entered into the password strength checker, and the score and feedback were recorded. The results are summarized in the table below.
 
+![Examples:](Screenshot/2.png)
+
+
+
+![Examples:](Screenshot/3.png)
+
+
+
+![Examples:](Screenshot/4.png)
+
+
+
+![Examples:](Screenshot/5.png)
+
+---
+
 | Password Tested                        | Length | Character Types Used                | Score/Rating     | Tool Feedback & Analysis                                                                 |
 |----------------------------------------|--------|------------------------------------|------------------|------------------------------------------------------------------------------------------|
 | password                               | 8      | Lowercase only                    | 8% (Very Weak)  | Deductions for being a dictionary word. Extremely vulnerable.                             |
 | Password123                            | 11     | Uppercase, Lowercase, Numbers     | 75% (Good)       | A decent mix, but predictable. The sequential numbers and capitalization pattern are common. |
 | P@ssw0rd!_                            | 10     | All 4 types                       | 92% (Very Strong)| Strong score due to the mix of uppercase, lowercase, numbers, and symbols. The use of substitutions (@ for a, 0 for o) helps. |
 | MyDogSpotLoves2Chase$quirrels!         | 32     | All 4 types                       | 100% (Very Strong)| Excellent score. Length is the most significant factor here. It's a long, memorable passphrase that includes multiple character types, making it highly resistant to attacks. |
-
-
 
 ## Key Learnings & Best Practices
 Based on the evaluation, the following are the most effective practices for creating strong passwords.
@@ -34,8 +50,23 @@ Based on the evaluation, the following are the most effective practices for crea
   - Lowercase letters (a-z)
   - Numbers (0-9)
   - Symbols (!, @, #, $, %, etc.)
+
 - **Create a Passphrase**: Instead of a complex, hard-to-remember password, create a long passphrase. For example, `Correct-Horse-Battery-Staple` is much easier for a human to remember but incredibly difficult for a computer to guess.
+
+---
+
+ ![Examples:](Screenshot/9.png)
+
+ ---
+
 - **Avoid Predictability**: Do not use common substitutions (e.g., `P@ssw0rd`), personal information (birthdays, names), or sequential characters (abc, 123).
+
+---
+
+ ![Examples:](Screenshot/8.png)
+
+ ---
+
 - **Uniqueness is Key**: Never reuse passwords across different accounts. If one account is compromised, all your other accounts become vulnerable.
 
 ## Common Password Attacks Explained
