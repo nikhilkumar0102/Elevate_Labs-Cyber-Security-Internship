@@ -1,4 +1,4 @@
-# Password Strength Analysis Project 
+# Password Strength Analysis
 
 This project explores the principles of creating strong, secure passwords. By testing various passwords with an online strength checker, this analysis identifies best practices and explains how password complexity thwarts common cyberattacks.
 
