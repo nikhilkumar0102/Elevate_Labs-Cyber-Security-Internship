@@ -18,12 +18,12 @@ Each password was entered into the password strength checker, and the score and 
 
 | Password Tested                        | Length | Character Types Used                | Score/Rating     | Tool Feedback & Analysis                                                                 |
 |----------------------------------------|--------|------------------------------------|------------------|------------------------------------------------------------------------------------------|
-| password                               | 8      | Lowercase only                    | 19% (Very Weak)  | Deductions for being a dictionary word. Extremely vulnerable.                             |
-| Password123                            | 11     | Uppercase, Lowercase, Numbers     | 65% (Good)       | A decent mix, but predictable. The sequential numbers and capitalization pattern are common. |
-| P@ssw0rd!_                            | 10     | All 4 types                       | 91% (Very Strong)| Strong score due to the mix of uppercase, lowercase, numbers, and symbols. The use of substitutions (@ for a, 0 for o) helps. |
+| password                               | 8      | Lowercase only                    | 8% (Very Weak)  | Deductions for being a dictionary word. Extremely vulnerable.                             |
+| Password123                            | 11     | Uppercase, Lowercase, Numbers     | 75% (Good)       | A decent mix, but predictable. The sequential numbers and capitalization pattern are common. |
+| P@ssw0rd!_                            | 10     | All 4 types                       | 92% (Very Strong)| Strong score due to the mix of uppercase, lowercase, numbers, and symbols. The use of substitutions (@ for a, 0 for o) helps. |
 | MyDogSpotLoves2Chase$quirrels!         | 32     | All 4 types                       | 100% (Very Strong)| Excellent score. Length is the most significant factor here. It's a long, memorable passphrase that includes multiple character types, making it highly resistant to attacks. |
 
-*Export to Sheets*
+
 
 ## Key Learnings & Best Practices
 Based on the evaluation, the following are the most effective practices for creating strong passwords.
