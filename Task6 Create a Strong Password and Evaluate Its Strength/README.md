@@ -6,7 +6,9 @@ This project explores the principles of creating strong, secure passwords. By te
 To understand the key factors that contribute to a strong password by creating and evaluating passwords of varying complexity using online tools, and to summarize the findings and best practices for robust password security.
 
 ## Methodology & Test Results
-The following steps were taken to analyze password strength. The tool used for this analysis was [passwordmeter.com](https://passwordmeter.com), but any similar tool can be used.
+The following steps were taken to analyze password strength. The tool used for this analysis was [passwordmonster.com](https://www.passwordmonster.com/), but any similar tool can be used.
+
+
 
 ### 1. Password Creation & Testing
 A series of passwords were created with increasing complexity to test how length, character types, and structure affect overall strength.
