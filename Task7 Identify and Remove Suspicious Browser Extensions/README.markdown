@@ -15,8 +15,8 @@ The main goals of this audit are:
 
 ## Tools Used
 
-- **Web Browser**: Google Chrome (Version: Latest stable release as of August 15, 2025)
-- **Browser Extension Manager**: Chrome's built-in extension management interface, accessed via the puzzle-piece icon in the toolbar, which displays extensions with access to the current webpage.
+- **Web Browser**: Brave 
+- **Browser Extension Manager**: Brave's built-in extension management interface, accessed via the puzzle-piece icon in the toolbar, which displays extensions with access to the current webpage.
 
 ## Audit Methodology
 
