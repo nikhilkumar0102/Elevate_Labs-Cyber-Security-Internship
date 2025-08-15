@@ -73,9 +73,15 @@ The audit focused on the three extensions identified in the browser's extension 
 - **FoxyProxy**: While legitimate, its network-related permissions are powerful and could be exploited if the extension were compromised. Disabling it when not in use aligns with the principle of least privilege.
 - **Wappalyzer**: Useful for development work, but its data collection capabilities are unnecessary for everyday browsing. Disabling it by default reduces the risk of unintended data exposure.
 
-## Export to Sheets
+---
+- Before Disabling it was as mentioned collecting data.
+  
+![Example](Screenshot/7.png)
 
-The audit results were exported to a Google Sheets document for record-keeping and future reference. The table format includes columns for Extension Name, Function & Purpose, Reason for Action, and Action Taken, as shown above.
+- So now disabling it to prevent unnecessary data collecion.
+  
+![Example](Screenshot/6.png)
+---
 
 ## Conclusion
 
