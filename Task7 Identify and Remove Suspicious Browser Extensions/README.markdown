@@ -18,6 +18,8 @@ The main goals of this audit are:
 - **Web Browser**: Brave 
 - **Browser Extension Manager**: Brave's built-in extension management interface, accessed via the puzzle-piece icon in the toolbar, which displays extensions with access to the current webpage.
 
+![Examples:](Screenshot/1.png)
+
 ## Audit Methodology
 
 The audit was conducted systematically, following these steps:
@@ -27,6 +29,14 @@ The audit was conducted systematically, following these steps:
 3. **Analyzed Permissions**: Noted that all three extensions have "Full access" permissions, allowing them to "see and change information" on the visited webpage. This high level of access necessitated a deeper investigation.
 4. **Researched Each Extension**: Conducted research to verify the functionality, legitimacy, and necessity of each extension, assessing whether their permissions were justified.
 5. **Documented Findings**: Recorded detailed findings, including the purpose of each extension, the rationale for actions taken, and the final decision for each.
+
+---
+
+![Examples:](Screenshot/3.png)
+
+![Examples:](Screenshot/2.png)
+
+---
 
 ## Research: Risks of Malicious Browser Extensions
 
@@ -49,6 +59,13 @@ The audit focused on the three extensions identified in the browser's extension 
 | **Dark Reader** | Enables a dark theme on websites to reduce eye strain and improve readability. It is a widely used, well-regarded open-source extension with a strong reputation in the community. | The "Full access" permission is necessary for Dark Reader to dynamically apply dark mode styling to webpages. As this extension is used daily for browsing comfort, it is deemed essential. | **Keep** |
 | **FoxyProxy** | A proxy management tool that allows users to switch between different proxy servers. It is commonly used by developers and security professionals for testing and accessing region-restricted content. | FoxyProxy requires significant network permissions to function, which could pose a risk if left enabled unnecessarily. It is only used occasionally for development tasks, so disabling it when not in use reduces the attack surface. | **Disable (when not in use)** |
 | **Wappalyzer** | A technology profiler that identifies the frameworks, servers, and analytics tools used to build a website. The number '18' on its icon indicates it detected 18 technologies on the audited webpage. | Wappalyzer is a valuable tool for developers but not essential for general browsing. Its permissions to access webpage data are justified for its purpose, but it can be disabled when not needed to minimize risk. | **Disable (when not in use)** |
+
+---
+![Examples:](Screenshot/4.png)
+
+![Examples:](Screenshot/5.png)
+---
+
 
 ### Additional Notes
 
