@@ -1,4 +1,4 @@
-<img width="1042" height="707" alt="image" src="https://github.com/user-attachments/assets/09cc7492-7d72-4b66-a955-71ddea08771f" /># Easy Guide to Using a VPN in Simple Words
+# Easy Guide to Using a VPN in Simple Words
 
 A VPN (Virtual Private Network) is like a secret tunnel for your internet connection. It hides your location and protects your data, making your online activities safer and more private. This guide explains how to use a VPN step-by-step in simple language, plus a clear summary of what VPNs can and can’t do.
 
