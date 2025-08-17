@@ -1,5 +1,5 @@
 
-# Elevate Labs Cybersecurity Internship: Network Port Scanner
+# Elevate Labs Cybersecurity Internship
 
 <img width="915" height="500" alt="image" src="https://github.com/user-attachments/assets/4c91e7ad-ef75-4a46-8cc3-b9eafcd3a945" />
 
