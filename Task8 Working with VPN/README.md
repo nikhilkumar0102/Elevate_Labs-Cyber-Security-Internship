@@ -1,4 +1,4 @@
-# Easy Guide to Using a VPN in Simple Words
+<img width="1042" height="707" alt="image" src="https://github.com/user-attachments/assets/09cc7492-7d72-4b66-a955-71ddea08771f" /># Easy Guide to Using a VPN in Simple Words
 
 A VPN (Virtual Private Network) is like a secret tunnel for your internet connection. It hides your location and protects your data, making your online activities safer and more private. This guide explains how to use a VPN step-by-step in simple language, plus a clear summary of what VPNs can and can’t do.
 
@@ -47,10 +47,25 @@ A VPN (Virtual Private Network) is like a secret tunnel for your internet connec
 - **How to do it**: Open a website, like YouTube or Netflix, and check if it works. If you picked a server in another country, try accessing content only available there (like a show not in your region). Look for a lock icon in your browser’s address bar—it means your connection is secure.
 - **Tip**: If a website doesn’t load or blocks you, try a different server in the VPN app.
 
+---
+
+![Example](Screenshot/6.png)
+
+![Example](Screenshot/5.png)
+
+---
+
 ### 6. Disconnect the VPN and Compare
 - **What to do**: Turn off the VPN to see how it affects your internet.
 - **How to do it**: In the VPN app, click “Disconnect.” Go back to [whatismyipaddress.com](https://whatismyipaddress.com) to check that your real IP address is back. Then, visit a website again and notice if it loads faster or slower without the VPN.
 - **Tip**: VPNs can slow down your internet a bit because of the encryption, so compare the speed.
+
+---
+![Example](Screenshot/7.png)
+
+![Example](Screenshot/6.png)
+
+---
 
 ### 7. Learn About VPN Encryption and Privacy
 - **What to do**: Understand how the VPN keeps you safe and private.
