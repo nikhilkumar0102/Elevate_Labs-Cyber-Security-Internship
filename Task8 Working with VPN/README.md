@@ -61,19 +61,11 @@ A VPN (Virtual Private Network) is like a secret tunnel for your internet connec
 - **Tip**: VPNs can slow down your internet a bit because of the encryption, so compare the speed.
 
 ---
+![Example](Screenshot/8.png)
+
 ![Example](Screenshot/7.png)
 
-![Example](Screenshot/6.png)
-
 ---
-
-### 7. Learn About VPN Encryption and Privacy
-- **What to do**: Understand how the VPN keeps you safe and private.
-- **How to do it**: Check the VPN’s website for info on:
-  - **Encryption**: This is like a secret code that protects your data. Common types are OpenVPN or WireGuard—both are strong.
-  - **No-logs policy**: This means the VPN doesn’t save what you do online. Look for this to stay private.
-  - **Extra features**: Some VPNs have a “kill switch” (stops your internet if the VPN disconnects) or “split tunneling” (lets you choose which apps use the VPN).
-- **Tip**: Search online for “how VPN encryption works” for simple explanations if you want to learn more.
 
 ### 8. Summary of VPN Benefits and Limitations
 
@@ -96,5 +88,3 @@ A VPN (Virtual Private Network) is like a secret tunnel for your internet connec
 - **Use on All Devices**: Install the VPN on your phone, laptop, or tablet for protection everywhere.
 - **Check for Updates**: Keep the VPN app updated for the best security and features.
 - **Ask for Help**: If the VPN isn’t working, check the provider’s website for support or FAQs.
-
-By following these steps, you can easily use a VPN to stay safer online, access more content, and understand its pros and cons. It’s like putting a lock on your internet connection!
