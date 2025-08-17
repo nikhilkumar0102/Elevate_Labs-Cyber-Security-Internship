@@ -9,6 +9,14 @@ A VPN (Virtual Private Network) is like a secret tunnel for your internet connec
 - **How to do it**: Search online for “best free VPNs” and check user reviews. Some popular free VPNs are ProtonVPN, Windscribe, or TunnelBear. Go to their official website and sign up with your email.
 - **Tip**: Avoid VPNs with bad reviews or ones that seem shady, as they might not keep your data safe.
 
+---
+
+![Example](Screenshot/1.jpg)
+
+![Example](Screenshot/2.png)
+
+---
+
 ### 2. Download and Set Up the VPN App
 - **What to do**: Get the VPN app on your phone, computer, or tablet.
 - **How to do it**: Visit the VPN’s official website or your device’s app store (like Google Play or Apple App Store). Download the app, open it, and follow the instructions to install it. You may need to log in with the account you made in Step 1.
@@ -23,6 +31,16 @@ A VPN (Virtual Private Network) is like a secret tunnel for your internet connec
 - **What to do**: Make sure the VPN is hiding your real location.
 - **How to do it**: Go to [whatismyipaddress.com](https://whatismyipaddress.com) in your browser. It will show your IP address (a number that identifies your device online). If the VPN is working, the IP address should match the location of the server you chose, not your real location.
 - **Tip**: Write down your real IP address before connecting to the VPN so you can compare.
+
+---
+
+![Example](Screenshot/3.png)
+
+![Example](Screenshot/4.png)
+
+- Here we can see that my ip before enabling the vpn was different and after enabling it it changed to Netherland server. 
+
+---
 
 ### 5. Browse a Website to Test Encryption
 - **What to do**: Visit a website to confirm the VPN is protecting your connection.
