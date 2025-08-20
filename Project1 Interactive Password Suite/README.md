@@ -1,16 +1,7 @@
-PassGenius: Interactive Password Suite
-<p align="center">
-<pre>
-██████╗ █████╗ ███████╗███████╗██╗    ██████╗ ██████╗ ██████╗
-██╔══██╗██╔══██╗██╔════╝██╔════╝██║    ██╔══██╗██╔══██╗██╔══██╗
-██████╔╝███████║███████╗███████╗██║    ██║  ██║██████╔╝██████╔╝
-██╔═══╝ ██╔══██║╚════██║╚════██║██║    ██║  ██║██╔══██╗██╔══██╗
-██║     ██║  ██║███████║███████║███████╗██████╔╝██║  ██║██████╔╝
-╚═╝     ╚═╝  ╚═╝╚══════╝╚══════╝╚══════╝╚═════╝ ╚═╝  ╚═╝╚═════╝
-</pre>
-</p>
+# PassGenius: Interactive Password Suite
 
-<p align="center">
+![banner](Screenshot/banner.png)
+
 <strong>A modern, interactive command-line tool for password strength analysis, secure passphrase generation, and security education.</strong>
 </p>
 
@@ -70,7 +61,10 @@ pip install -r requirements.txt
 
 You will be greeted with the main menu, where you can choose from the available options.
 
-<!-- It's highly recommended to add a screenshot of your tool in action here! -->
+![options](Screenshot/options.png)
+
+![options](Screenshot/options1.png)
+
 
 Technology Stack
 
