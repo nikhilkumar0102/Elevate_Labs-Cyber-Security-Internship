@@ -90,7 +90,3 @@ Contributions are welcome! If you have ideas for new features, improvements, or 
 
 - Open a Pull Request.
 
----
-
-## License
-This project is licensed under the MIT License - see the LICENSE file for details.
