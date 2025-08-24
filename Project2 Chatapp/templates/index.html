@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<title>Advanced Real-Time Chat</title>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+		<link
+			rel="stylesheet"
+			href="{{ url_for('static', filename='styles.css') }}"
+		/>
+	</head>
+	<body>
+		<h2>Welcome, <span id="username">{{ username }}</span>!</h2>
+		<div class="container">
+			<div class="sidebar">
+				<div class="room-list">
+					<h3>Rooms</h3>
+					{% for room in rooms %}
+					<div class="room-item" onclick="joinRoom('{{ room }}')">
+						{{ room }}
+					</div>
+					{% endfor %}
+				</div>
+				<div class="user-list">
+					<h3>Online Users</h3>
+					<div id="active-users"></div>
+				</div>
+			</div>
+			<div class="main-chat">
+				<div id="chat"></div>
+				<div class="input-area">
+					<input
+						id="message"
+						type="text"
+						placeholder="Type a message..."
+						onkeypress="handleKeyPress(event)"
+					/>
+					<button onclick="sendMessage()">Send</button>
+				</div>
+			</div>
+		</div>
+		<script src="{{ url_for('static', filename='chat.js') }}"></script>
+	</body>
+</html>
