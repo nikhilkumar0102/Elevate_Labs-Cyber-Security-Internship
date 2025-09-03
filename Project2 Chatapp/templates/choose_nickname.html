@@ -52,6 +52,7 @@
 			<h1>Choose Your Display Name</h1>
 			<p>Welcome, {{ account_username }}!</p>
 			<form method="POST" action="{{ url_for('set_nickname') }}">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
 				<input
 					type="text"
 					name="nickname"
