@@ -3,7 +3,8 @@
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-		<title>Login</title> <link
+		<title>Login</title>
+		<link
 			rel="stylesheet"
 			href="{{ url_for('static', filename='styles.css') }}"
 		/>
@@ -65,6 +66,7 @@
             {% endwith %}
 
 			<form method="POST" action="{{ url_for('login') }}">
+				<input type="hidden" name="csrf_token" value="{{ csrf_token }}">
 				<input
 					type="text"
 					name="username"
