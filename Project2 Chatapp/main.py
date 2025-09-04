@@ -93,6 +93,7 @@ def find_available_port(host, start_port, max_attempts=10):
     raise OSError(f"No available ports found between {start_port} and {start_port + max_attempts - 1}")
 
 # Registration Route
+# Registration Route
 @app.route("/register", methods=['GET', 'POST'])
 @limiter.limit("10 per hour")  # Limit registration attempts
 def register():
@@ -108,23 +109,38 @@ def register():
             logger.error("CSRF token validation failed for register")
             flash('Invalid CSRF token.')
             return redirect(url_for('register'))
+        
         username = sanitize_input(request.form.get('username', ''))
         password = request.form.get('password', '')
-        if not username or not password:
-            flash('Username and password are required.')
+        confirm_password = request.form.get('confirm_password', '')
+        
+        if not username or not password or not confirm_password:
+            flash('All fields are required.')
             return redirect(url_for('register'))
-        if len(username) > 80 or len(username) < 3:
+        
+        if len(username) < 3 or len(username) > 80:
             flash('Username must be 3-80 characters.')
             return redirect(url_for('register'))
+        
+        if password != confirm_password:
+            flash('Passwords do not match.')
+            return redirect(url_for('register'))
+        
+        if len(password) < 6:
+            flash('Password must be at least 6 characters.')
+            return redirect(url_for('register'))
+        
         user = User.query.filter_by(username=username).first()
         if user:
             flash('Username is already taken. Please choose another.')
             return redirect(url_for('register'))
+        
         logger.info("Creating new user")
         new_user = User(
             username=username,
             password_hash=generate_password_hash(password, method='pbkdf2:sha256')
         )
+        
         try:
             db.session.add(new_user)
             db.session.commit()
@@ -136,8 +152,8 @@ def register():
             logger.error(f"Registration error: {str(e)}")
             flash('Registration failed. Please try again.')
             return redirect(url_for('register'))
-    logger.info("Rendering register.html")
-    return render_template("register.html", csrf_token=generate_csrf())
+    
+    return render_template('register.html', csrf_token=generate_csrf())
 
 # Login Route
 @app.route("/login", methods=['GET', 'POST'])
