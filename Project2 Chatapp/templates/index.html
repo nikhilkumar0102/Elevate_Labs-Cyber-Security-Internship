@@ -137,6 +137,7 @@
             display: flex;
             flex-direction: column;
             min-width: 0;
+            position: relative;
         }
 
         #chat {
@@ -145,6 +146,7 @@
             overflow-y: auto;
             background: #f1f5f9;
             font-size: 0.95rem;
+            max-height: calc(100vh - 200px);
         }
 
         #chat .message {
@@ -188,6 +190,11 @@
             background: var(--white);
             align-items: center;
             min-height: 3.5rem;
+            position: sticky;
+            bottom: 0;
+            z-index: 5;
+            width: 100%;
+            box-shadow: 0 -2px 6px rgba(0, 0, 0, 0.1);
         }
 
         .input-area input {
@@ -253,7 +260,7 @@
             }
 
             .sidebar {
-                display: none; /* Hide sidebar by default on mobile */
+                display: none;
             }
 
             .dropdown-container {
@@ -263,6 +270,9 @@
                 padding: 1rem;
                 background: #f8f9fa;
                 border-bottom: 1px solid #e2e8f0;
+                position: sticky;
+                top: 0;
+                z-index: 5;
             }
 
             .dropdown-container select {
@@ -275,6 +285,10 @@
                 width: 100%;
                 box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
                 transition: var(--transition);
+                appearance: none;
+                background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' fill='%234a90e2' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+                background-repeat: no-repeat;
+                background-position: right 0.75rem center;
             }
 
             .dropdown-container select:focus {
@@ -289,6 +303,7 @@
 
             #chat {
                 padding: 1rem;
+                max-height: calc(100vh - 250px);
             }
 
             .input-area {
@@ -316,6 +331,7 @@
 
             #chat {
                 padding: 1.25rem;
+                max-height: calc(100vh - 200px);
             }
 
             .input-area {
@@ -331,6 +347,7 @@
 
             #chat {
                 padding: 1.5rem;
+                max-height: calc(100vh - 200px);
             }
 
             .input-area {
