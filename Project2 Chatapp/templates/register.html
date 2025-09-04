@@ -6,52 +6,138 @@
     <title>Register</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
     <style>
+        :root {
+            --primary: #4a90e2;
+            --secondary: #6c757d;
+            --background: #e9ecef;
+            --white: #ffffff;
+            --danger: #dc3545;
+            --success: #28a745;
+            --shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s ease-in-out;
+            --gradient: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            --text-dark: #2d3748;
+            --input-bg: #f8f9fa;
+        }
+
         body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, var(--background), #d3dce6);
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            background-color: #f5f6fa;
+            color: var(--text-dark);
+            line-height: 1.6;
+            overflow: hidden;
         }
+
         .register-container {
-            background: white;
+            background: var(--white);
             padding: 40px;
-            border-radius: 10px;
+            border-radius: var(--border-radius);
             box-shadow: var(--shadow);
             text-align: center;
-            width: 300px;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(145deg, #ffffff, #f8f9fa);
         }
+
         .register-container h1 {
             color: var(--primary);
             margin-bottom: 20px;
+            font-size: 2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
         }
+
         .register-container input {
             width: 100%;
             padding: 12px;
-            margin-bottom: 20px;
-            border: 1px solid #ddd;
+            margin-bottom: 15px;
+            border: 1px solid #dfe4ea;
             border-radius: 5px;
             font-size: 1em;
             box-sizing: border-box;
+            background: var(--input-bg);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
         }
+
+        .register-container input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(74, 144, 226, 0.4);
+            background: #ffffff;
+        }
+
         .register-container button {
             width: 100%;
+            padding: 12px;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 5px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
         }
+
+        .register-container button:hover {
+            background: linear-gradient(135deg, #357abd 0%, #2a5d9c 100%);
+            transform: translateY(-2px);
+        }
+
         .register-container p {
             margin-top: 15px;
+            font-size: 0.95em;
+            color: var(--secondary);
         }
+
+        .register-container p a {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .register-container p a:hover {
+            text-decoration: underline;
+            color: #357abd;
+        }
+
         .error {
             color: var(--danger);
             margin-bottom: 15px;
-            background-color: #fdd;
+            background-color: #fff1f2;
             padding: 10px;
             border-radius: 5px;
+            border-left: 4px solid var(--danger);
+            font-size: 0.95em;
+        }
+
+        @media (max-width: 480px) {
+            .register-container {
+                padding: 20px;
+                margin: 10px;
+                max-width: 100%;
+            }
+
+            .register-container h1 {
+                font-size: 1.5rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="register-container">
-        <h1>Register New Account</h1>
+        <h1>Register</h1>
         {% with messages = get_flashed_messages() %}
             {% if messages %}
                 {% for message in messages %}
@@ -60,8 +146,10 @@
             {% endif %}
         {% endwith %}
         <form method="POST" action="{{ url_for('register') }}">
-            <input type="text" name="username" placeholder="Account Name" required>
-            <input type="password" name="password" placeholder="Password" required>
+            <input type="hidden" name="csrf_token" value="{{ csrf_token }}">
+            <input type="text" name="username" placeholder="Username" required minlength="3" maxlength="80">
+            <input type="password" name="password" placeholder="Password" required minlength="6">
+            <input type="password" name="confirm_password" placeholder="Confirm Password" required>
             <button type="submit">Register</button>
         </form>
         <p>Already have an account? <a href="{{ url_for('login') }}">Login here</a>.</p>
