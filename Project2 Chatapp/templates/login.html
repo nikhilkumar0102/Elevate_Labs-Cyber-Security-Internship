@@ -9,49 +9,125 @@
 			href="{{ url_for('static', filename='styles.css') }}"
 		/>
 		<style>
-            /* Using the same styles as before */
-			body {
-				display: flex;
-				justify-content: center;
-				align-items: center;
-				height: 100vh;
-				background-color: #f5f6fa;
-			}
-			.login-container {
-				background: white;
-				padding: 40px;
-				border-radius: 10px;
-				box-shadow: var(--shadow);
-				text-align: center;
-				width: 300px;
-			}
-			.login-container h1 {
-				color: var(--primary);
-				margin-bottom: 20px;
-			}
-			.login-container input {
-				width: 100%;
-				padding: 12px;
-				margin-bottom: 20px;
-				border: 1px solid #ddd;
-				border-radius: 5px;
-				font-size: 1em;
+            :root {
+                --primary: #4a90e2;
+                --danger: #dc3545;
+                --shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+                --transition: all 0.3s ease-in-out;
+            }
+
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                min-height: 100vh;
+                background: linear-gradient(to bottom, #e9ecef, #d3dce6);
+                margin: 0;
+                padding: 0;
+                width: 100%;
+                overflow: hidden;
+            }
+
+            .login-container {
+                background: white;
+                padding: 40px;
+                border-radius: 10px;
+                box-shadow: var(--shadow);
+                text-align: center;
+                width: 100%;
+                max-width: 400px;
+                margin: 20px;
+                position: relative;
+                overflow: hidden;
+                background: linear-gradient(145deg, #ffffff, #f8f9fa);
+            }
+
+            .login-container h1 {
+                color: var(--primary);
+                margin-bottom: 20px;
+                font-size: 2rem;
+                font-weight: 700;
+                letter-spacing: -0.025em;
+            }
+
+            .login-container input {
+                width: 100%;
+                padding: 12px;
+                margin-bottom: 20px;
+                border: 1px solid #dfe4ea;
+                border-radius: 5px;
+                font-size: 1em;
                 box-sizing: border-box;
-			}
-			.login-container button {
-				width: 100%;
-			}
+                background: #f8f9fa;
+                box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+                transition: var(--transition);
+            }
+
+            .login-container input:focus {
+                outline: none;
+                border-color: var(--primary);
+                box-shadow: 0 0 8px rgba(74, 144, 226, 0.4);
+                background: #ffffff;
+            }
+
+            .login-container button {
+                width: 100%;
+                padding: 12px;
+                background: var(--primary);
+                color: white;
+                border: none;
+                border-radius: 5px;
+                font-size: 1.1em;
+                font-weight: 600;
+                cursor: pointer;
+                box-shadow: var(--shadow);
+                transition: var(--transition);
+            }
+
+            .login-container button:hover {
+                background: #357abd;
+                transform: translateY(-2px);
+            }
+
             .login-container p {
                 margin-top: 15px;
+                font-size: 0.95em;
+                color: #6c757d;
             }
+
+            .login-container p a {
+                color: var(--primary);
+                text-decoration: none;
+                font-weight: 500;
+            }
+
+            .login-container p a:hover {
+                text-decoration: underline;
+                color: #357abd;
+            }
+
             .error {
                 color: var(--danger);
                 margin-bottom: 15px;
-                background-color: #fdd;
+                background-color: #fff1f2;
                 padding: 10px;
                 border-radius: 5px;
+                border-left: 4px solid var(--danger);
+                font-size: 0.95em;
             }
-		</style>
+
+            @media (max-width: 480px) {
+                .login-container {
+                    padding: 20px;
+                    margin: 10px;
+                    max-width: 100%;
+                }
+
+                .login-container h1 {
+                    font-size: 1.5rem;
+                }
+            }
+        </style>
 	</head>
 	<body>
 		<div class="login-container">
