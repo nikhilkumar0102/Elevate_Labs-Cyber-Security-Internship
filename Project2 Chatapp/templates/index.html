@@ -3,46 +3,422 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="csrf-token" content="{{ csrf_token }}">
     <title>Chat Application</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}">
+    <style>
+        :root {
+            --primary: #4a90e2;
+            --secondary: #6c757d;
+            --background: #e9ecef;
+            --white: #ffffff;
+            --danger: #dc3545;
+            --success: #28a745;
+            --shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+            --border-radius: 12px;
+            --transition: all 0.3s ease-in-out;
+            --gradient: linear-gradient(135deg, #4a90e2 0%, #357abd 100%);
+            --text-dark: #2d3748;
+            --input-bg: #f8f9fa;
+            --banner-bg: linear-gradient(135deg, #4a90e2 0%, #2a5d9c 100%), url('data:image/svg+xml,%3Csvg xmlns="http://www.w3.org/2000/svg" width="100" height="100" viewBox="0 0 100 100"%3E%3Cg fill="%23ffffff" fill-opacity="0.1"%3E%3Ccircle cx="50" cy="50" r="20"/%3E%3C/g%3E%3C/svg%3E');
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            background: linear-gradient(to bottom, var(--background), #d3dce6);
+            display: flex;
+            flex-direction: column;
+            color: var(--text-dark);
+            line-height: 1.6;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+            overflow: hidden;
+        }
+
+        .banner {
+            background: var(--banner-bg);
+            background-size: cover, 20px 20px;
+            padding: 1rem 1.5rem;
+            color: var(--white);
+            text-align: left;
+            font-size: 1.25rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            position: relative;
+            z-index: 10;
+            min-height: 3rem;
+        }
+
+        .container {
+            display: flex;
+            flex: 1;
+            width: 100%;
+            min-height: 0;
+            background: var(--white);
+            border-radius: var(--border-radius);
+            box-shadow: var(--shadow);
+            overflow: hidden;
+            background: linear-gradient(145deg, var(--white), #f1f5f9);
+            margin-top: -0.5rem;
+            border-top-left-radius: 0;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: #f8f9fa;
+            padding: 1.5rem;
+            border-right: 1px solid #e2e8f0;
+            overflow-y: auto;
+            background: linear-gradient(to bottom, #f8f9fa, #e2e8f0);
+            min-width: 250px;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .sidebar h3 {
+            color: var(--primary);
+            margin-bottom: 1.5rem;
+            font-size: 1.2rem;
+            font-weight: 700;
+            letter-spacing: -0.025em;
+        }
+
+        .room-list, .user-list {
+            flex: 1;
+            overflow-y: auto;
+        }
+
+        .room-list .room-item {
+            padding: 0.75rem 1rem;
+            margin-bottom: 0.75rem;
+            background: var(--white);
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 500;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .room-list .room-item:hover,
+        .room-list .room-item:focus {
+            background: var(--gradient);
+            color: var(--white);
+            transform: translateX(5px);
+        }
+
+        .room-list .room-item.active-room {
+            background: var(--gradient);
+            color: var(--white);
+            font-weight: 600;
+        }
+
+        #active-users div {
+            padding: 0.75rem 1rem;
+            background: var(--white);
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
+            color: var(--text-dark);
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        #active-users div:hover,
+        #active-users div:focus {
+            background: var(--input-bg);
+            transform: translateX(3px);
+        }
+
+        .main-chat {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            min-width: 0;
+        }
+
+        #chat {
+            flex: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            background: #f1f5f9;
+            font-size: 0.95rem;
+        }
+
+        #chat .message {
+            margin-bottom: 1rem;
+            padding: 0.75rem 1rem;
+            border-radius: 0.5rem;
+            background: var(--white);
+            max-width: 80%;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            word-wrap: break-word;
+            line-height: 1.4;
+        }
+
+        #chat .message.sent {
+            background: var(--gradient);
+            color: var(--white);
+            margin-left: auto;
+            border-bottom-right-radius: 0.25rem;
+        }
+
+        #chat .message.received {
+            background: #e2e8f0;
+            margin-right: auto;
+            border-bottom-left-radius: 0.25rem;
+        }
+
+        #chat .message.system,
+        #chat .message.private {
+            background: #fefcbf;
+            color: var(--text-dark);
+            margin: 1rem auto;
+            max-width: 90%;
+            border-left: 4px solid var(--primary);
+        }
+
+        .input-area {
+            display: flex;
+            gap: 0.75rem;
+            padding: 1rem;
+            border-top: 1px solid #e2e8f0;
+            background: var(--white);
+            align-items: center;
+            min-height: 3.5rem;
+        }
+
+        .input-area input {
+            flex: 1;
+            padding: 0.75rem;
+            border: 1px solid #dfe4ea;
+            border-radius: 0.5rem;
+            font-size: 1rem;
+            background: var(--input-bg);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.05);
+            transition: var(--transition);
+        }
+
+        .input-area input:focus {
+            outline: none;
+            border-color: var(--primary);
+            box-shadow: 0 0 8px rgba(74, 144, 226, 0.4);
+        }
+
+        .input-area button {
+            padding: 0.75rem 1.5rem;
+            background: var(--gradient);
+            color: var(--white);
+            border: none;
+            border-radius: 0.5rem;
+            cursor: pointer;
+            font-weight: 600;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            min-width: 4rem;
+        }
+
+        .input-area button:hover,
+        .input-area button:focus {
+            background: linear-gradient(135deg, #357abd 0%, #2a5d9c 100%);
+            transform: translateY(-2px);
+        }
+
+        .input-area input[type="file"] + button {
+            padding: 0.75rem;
+            min-width: auto;
+        }
+
+        .connection-status {
+            padding: 0.75rem;
+            margin: 1rem;
+            border-radius: 0.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            background: var(--success);
+            color: var(--white);
+        }
+
+        .connection-status.disconnected {
+            background: var(--danger);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                height: auto;
+                margin: 0.5rem;
+            }
+
+            .sidebar {
+                display: none; /* Hide sidebar by default on mobile */
+            }
+
+            .dropdown-container {
+                display: flex;
+                flex-direction: column;
+                gap: 1rem;
+                padding: 1rem;
+                background: #f8f9fa;
+                border-bottom: 1px solid #e2e8f0;
+            }
+
+            .dropdown-container select {
+                padding: 0.75rem;
+                border: 1px solid #dfe4ea;
+                border-radius: 0.5rem;
+                font-size: 1rem;
+                background: var(--white);
+                cursor: pointer;
+                width: 100%;
+                box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+                transition: var(--transition);
+            }
+
+            .dropdown-container select:focus {
+                outline: none;
+                border-color: var(--primary);
+                box-shadow: 0 0 8px rgba(74, 144, 226, 0.4);
+            }
+
+            .main-chat {
+                flex: 1;
+            }
+
+            #chat {
+                padding: 1rem;
+            }
+
+            .input-area {
+                flex-direction: column;
+                gap: 0.5rem;
+                padding: 0.75rem;
+            }
+
+            .input-area input,
+            .input-area button {
+                width: 100%;
+                padding: 0.75rem;
+            }
+        }
+
+        @media (min-width: 769px) and (max-width: 1024px) {
+            .sidebar {
+                width: 250px;
+                padding: 1.25rem;
+            }
+
+            .main-chat {
+                flex: 1;
+            }
+
+            #chat {
+                padding: 1.25rem;
+            }
+
+            .input-area {
+                padding: 0.75rem;
+            }
+        }
+
+        @media (min-width: 1025px) {
+            .sidebar {
+                width: 300px;
+                padding: 1.5rem;
+            }
+
+            #chat {
+                padding: 1.5rem;
+            }
+
+            .input-area {
+                padding: 1rem;
+            }
+        }
+    </style>
 </head>
 <body>
-    <h2 id="username">Welcome, {{ username }}!</h2>
-
+    <div class="banner">Welcome, {{ username }}!</div>
     <div class="container">
         <div class="sidebar">
+            <h3>Rooms</h3>
             <div class="room-list">
-                <h3>Rooms</h3>
                 {% for room in rooms %}
-                <div class="room-item" onclick="joinRoom('{{ room | e }}')">
-                    {{ room | e }}
-                </div>
+                <div class="room-item" onclick="joinRoom('{{ room | e }}')">{{ room | e }}</div>
                 {% endfor %}
             </div>
-
             <div class="user-list">
                 <h3>Online Users</h3>
                 <div id="active-users"></div>
             </div>
         </div>
-
         <div class="main-chat">
             <div id="chat"></div>
-
             <div class="input-area">
                 <input type="text" id="message" placeholder="Type your message..." onkeypress="handleKeyPress(event)">
                 <button onclick="sendMessage()">Send</button>
-                <input type="file" id="file-upload" style="display: none;" accept="image/*,audio/*">
+                <input type="file" id="file-upload" style="display:none;" accept=".png, .jpg, .jpeg, .gif, .mp3, .wav, .ogg">
                 <button onclick="document.getElementById('file-upload').click()">Upload</button>
             </div>
+            <div id="connection-status" class="connection-status">Connected</div>
+        </div>
+        <!-- Mobile Dropdowns -->
+        <div class="dropdown-container" style="display: none;">
+            <select id="room-dropdown" onchange="joinRoom(this.value)">
+                <option value="" disabled selected>Select a Room</option>
+                {% for room in rooms %}
+                <option value="{{ room | e }}">{{ room | e }}</option>
+                {% endfor %}
+            </select>
+            <select id="user-dropdown" disabled>
+                <option value="" disabled selected>Active Users</option>
+            </select>
         </div>
     </div>
-
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/socket.io/4.0.1/socket.io.js"></script>
+    <script src="https://cdn.socket.io/4.0.0/socket.io.min.js"></script>
     <script src="{{ url_for('static', filename='chat.js') }}"></script>
     <script>
-        document.getElementById('file-upload').addEventListener('change', uploadFile);
+        // Handle mobile view toggle
+        function updateLayout() {
+            const isMobile = window.innerWidth <= 768;
+            const sidebar = document.querySelector('.sidebar');
+            const dropdownContainer = document.querySelector('.dropdown-container');
+            if (isMobile) {
+                sidebar.style.display = 'none';
+                dropdownContainer.style.display = 'flex';
+                // Update room dropdown to reflect current room
+                const roomDropdown = document.getElementById('room-dropdown');
+                roomDropdown.value = currentRoom || 'General';
+                // Update user dropdown with active users
+                const userDropdown = document.getElementById('user-dropdown');
+                const activeUsers = document.getElementById('active-users');
+                if (activeUsers) {
+                    userDropdown.innerHTML = '<option value="" disabled selected>Active Users</option>';
+                    Array.from(activeUsers.children).forEach(user => {
+                        const userName = user.textContent.replace('(you)', '').trim();
+                        userDropdown.innerHTML += `<option value="${userName}">${userName}</option>`;
+                    });
+                }
+            } else {
+                sidebar.style.display = 'flex';
+                dropdownContainer.style.display = 'none';
+            }
+        }
+
+        // Update layout on load and resize
+        window.addEventListener('load', updateLayout);
+        window.addEventListener('resize', updateLayout);
+
+        // Sync active users dropdown when updated by chat.js
+        document.addEventListener('DOMContentLoaded', () => {
+            const activeUsers = document.getElementById('active-users');
+            const observer = new MutationObserver(updateLayout);
+            if (activeUsers) {
+                observer.observe(activeUsers, { childList: true, subtree: true });
+            }
+        });
     </script>
 </body>
 </html>
