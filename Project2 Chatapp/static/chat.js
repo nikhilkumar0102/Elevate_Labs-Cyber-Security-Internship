@@ -96,7 +96,11 @@ socket.on('private_message', (data) => {
     if (!userColors[data.from]) {
         userColors[data.from] = getRandomColor();
     }
-    addMessage(data.from, `[Private] ${data.msg}`, 'private', userColors[data.from]);
+    if (data.is_sender) {
+        addMessage(data.from, `[Private to ${data.target}] ${data.msg}`, 'private', userColors[data.from]);
+    } else {
+        addMessage(data.from, `[Private] ${data.msg}`, 'private', userColors[data.from]);
+    }
 });
 
 // Handle system status messages
@@ -296,7 +300,7 @@ function sendMessage() {
             addMessage('System', 'You cannot send a private message to yourself.', 'system');
             input.value = '';
             input.focus();
-            return;
+            return; // Prevent socket emission
         }
 
         if (privateMsg.trim()) {
