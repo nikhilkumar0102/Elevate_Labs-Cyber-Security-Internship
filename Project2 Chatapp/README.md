@@ -77,17 +77,18 @@ Node.js (for client-side JavaScript)
 ### Screenshots
 
 1. Login Page
+![login](screencshot/login.jpg)
 
-Description: Shows the login form with username and password fields, including the error message area.
+*Description: Shows the login form with username and password fields, including the error message area.*
 
 2. Registration Page
 
-Description: Displays the registration form with username, password, and confirm password fields, plus a success or error message.
+*Description: Displays the registration form with username, password, and confirm password fields, plus a success or error message.*
 
 3. Chat Interface
 
-Description: Depicts the main chat window with the room list, active users, message input, and a sample public message.
+*Description: Depicts the main chat window with the room list, active users, message input, and a sample public message.*
 
 4. Private Messaging
 
-Description: Shows a private message exchange, e.g., one user sending @otheruser hello with the sender seeing [Private to otheruser] hello and the recipient seeing [otheruser: [Private] hello].
+*Description: Shows a private message exchange, e.g., one user sending @otheruser hello with the sender seeing [Private to otheruser] hello and the recipient seeing [otheruser: [Private] hello].*
