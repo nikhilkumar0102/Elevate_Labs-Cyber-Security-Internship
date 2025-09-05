@@ -74,18 +74,29 @@ Node.js (for client-side JavaScript)
 ```
 ---
 
-### Screenshots
+## Screenshots
 
-1. Login Page
-![login](screencshot/login.jpg)
+*1. Login Page*
+---
+![Login Screenshot](screenshot/login.png)
 
 *Description: Shows the login form with username and password fields, including the error message area.*
 
-2. Registration Page
+---
+
+*2. Registration Page*
+---
+
+![Login Screenshot](screenshot/chat_screen.png)
 
 *Description: Displays the registration form with username, password, and confirm password fields, plus a success or error message.*
 
-3. Chat Interface
+---
+
+*3. Chat Interface*
+---
+![Login Screenshot](screenshot/nickname.png)
+
 
 *Description: Depicts the main chat window with the room list, active users, message input, and a sample public message.*
 
