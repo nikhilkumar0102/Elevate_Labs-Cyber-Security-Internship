@@ -102,6 +102,16 @@ Node.js (for client-side JavaScript)
 
 ---
 
-4. Private Messaging
+*4. Private Messaging* (E2E Encrypted)
+---
+
+![Login Screenshot](screenshot/secret.png)
 
 *Description: Shows a private message exchange, e.g., one user sending @otheruser hello with the sender seeing [Private to otheruser] hello and the recipient seeing [otheruser: [Private] hello].*
+
+*5. Normal Messaging*
+---
+
+![Login Screenshot](screenshot/normal%20message%20.png)
+---
+
