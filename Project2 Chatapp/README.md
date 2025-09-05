@@ -28,13 +28,14 @@ Via ZIP Download:
 ### Prerequisites
 
 ```Python 3.8+
-Flask
-Flask-SocketIO
-Flask-SQLAlchemy
-Flask-Limiter
-Werkzeug
-Bleach
-Node.js (for client-side JavaScript)
+Flask  # Web framework for building the application and handling HTTP requests
+Flask-SocketIO  # Enables real-time bidirectional communication via WebSockets
+Flask-SQLAlchemy  # Provides database integration and ORM for user management
+Flask-Limiter # Implements rate limiting to prevent abuse (e.g., messages, logins)
+Werkzeug  # Utilities for secure filename handling and password hashing
+Bleach  # Sanitizes user inputs to prevent XSS attacks
+gunicorn  # WSGI HTTP server for running the app in production
+eventlet # Asynchronous I/O library for WebSocket support with Gunicorn
 ```
 ---
 
