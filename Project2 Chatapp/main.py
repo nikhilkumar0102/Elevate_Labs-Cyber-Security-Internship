@@ -66,14 +66,11 @@ class User(db.Model):
         return f'<User {self.username}>'
 
 active_users: Dict[str, dict] = {}
+user_public_keys: Dict[str, str] = {}  # Store public keys {username: publicKeyBase64}
 
 # Helper function to check allowed files
 def allowed_file(filename):
     return '.' in filename and filename.rsplit('.', 1)[1].lower() in app.config['ALLOWED_EXTENSIONS']
-
-# Sanitize input to prevent XSS
-def sanitize_input(text):
-    return bleach.clean(text, tags=['p', 'strong', 'em'], attributes={})
 
 # Find an available port
 def find_available_port(host, start_port, max_attempts=10):
@@ -93,13 +90,10 @@ def find_available_port(host, start_port, max_attempts=10):
     raise OSError(f"No available ports found between {start_port} and {start_port + max_attempts - 1}")
 
 # Registration Route
-# Registration Route
 @app.route("/register", methods=['GET', 'POST'])
 @limiter.limit("10 per hour")  # Limit registration attempts
 def register():
     logger.info("Entering register route")
-    with app.app_context():
-        db.create_all()
     if request.method == 'POST':
         logger.info("Processing POST request")
         logger.debug(f"Register form data: {request.form}")
@@ -110,7 +104,7 @@ def register():
             flash('Invalid CSRF token.')
             return redirect(url_for('register'))
         
-        username = sanitize_input(request.form.get('username', ''))
+        username = bleach.clean(request.form.get('username', ''), tags=[], strip=True)
         password = request.form.get('password', '')
         confirm_password = request.form.get('confirm_password', '')
         
@@ -157,29 +151,35 @@ def register():
 
 # Login Route
 @app.route("/login", methods=['GET', 'POST'])
-@csrf.exempt  # Temporarily bypass CSRF to ensure login works
-@limiter.limit("20 per hour")  # Limit login attempts
+@limiter.limit("5 per minute")  # Limit login attempts to 5 per minute per IP
 def login():
+    error_message = None
     if request.method == 'POST':
         logger.info("Processing login POST request")
         logger.debug(f"Login form data: {request.form}")
-        username = sanitize_input(request.form.get('username', ''))
+        
+        try:
+            validate_csrf(request.form.get('csrf_token'))
+        except CSRFError:
+            logger.error("CSRF token validation failed for login")
+            error_message = 'Invalid CSRF token. Please try again.'
+            return render_template("login.html", csrf_token=generate_csrf(), error_message=error_message)
+
+        username = bleach.clean(request.form.get('username', ''), tags=[], strip=True)
         password = request.form.get('password', '')
         if not username or not password:
-            flash('Please enter username and password.')
-            return redirect(url_for('login'))
-        
-        user = User.query.filter_by(username=username).first()
-        if user and check_password_hash(user.password_hash, password):
-            session['account_username'] = user.username
-            session.permanent = True  # Enable session timeout
-            logger.info(f"Account {username} logged in.")
-            return redirect(url_for('choose_nickname'))
+            error_message = 'Please enter username and password.'
         else:
-            flash('Invalid username or password.')
-            return redirect(url_for('login'))
+            user = User.query.filter_by(username=username).first()
+            if user and check_password_hash(user.password_hash, password):
+                session['account_username'] = user.username
+                session.permanent = True  # Enable session timeout
+                logger.info(f"Account {username} logged in.")
+                return redirect(url_for('choose_nickname'))
+            else:
+                error_message = 'Invalid username or password.'
     logger.info("Rendering login.html")
-    return render_template("login.html", csrf_token=generate_csrf())
+    return render_template("login.html", csrf_token=generate_csrf(), error_message=error_message)
 
 # Routes for Nickname Selection
 @app.route("/choose-nickname", methods=['GET'])
@@ -200,7 +200,8 @@ def set_nickname():
         logger.error("CSRF token validation failed for set-nickname")
         flash('Invalid CSRF token.')
         return redirect(url_for('choose_nickname'))
-    nickname = sanitize_input(request.form.get('nickname', ''))
+    
+    nickname = bleach.clean(request.form.get('nickname', ''), tags=[], strip=True)
     if nickname and len(nickname.strip()) >= 3:
         session['display_name'] = nickname.strip()
         return redirect(url_for('index'))
@@ -275,6 +276,8 @@ def handle_disconnect():
     if request.sid in active_users:
         username = active_users[request.sid]['username']
         room = active_users[request.sid].get('room')
+        if username in user_public_keys:
+            del user_public_keys[username]  # Clean up public key on disconnect
         del active_users[request.sid]
         emit('active_users', {
             'users': [user['username'] for user in active_users.values()]
@@ -323,27 +326,61 @@ def on_leave(data: dict):
 def handle_message(data: dict):
     username = session['display_name']
     msg_type = data.get('type')
-    message = sanitize_input(data.get('msg', "").strip())
+    message = bleach.clean(data.get('msg', "").strip(), tags=['p', 'strong', 'em'], attributes={})
     if not message:
         return
     timestamp = datetime.now().isoformat()
     if msg_type == 'private':
-        target_user = sanitize_input(data.get('target', ''))
+        target_user = bleach.clean(data.get('target', ''), tags=[], strip=True)
         target_sid = None
         for sid, user_data in active_users.items():
             if user_data['username'] == target_user:
                 target_sid = sid
                 break
         if target_sid:
-            emit('private_message', {'msg': message, 'from': username, 'timestamp': timestamp}, to=target_sid)
-            emit('private_message', {'msg': f"To {target_user}: {message}", 'from': 'Me', 'timestamp': timestamp}, to=request.sid)
+            emit('private_message', {
+                'msg': message,
+                'from': username,
+                'timestamp': timestamp,
+                'is_sender': False
+            }, to=target_sid)
+            emit('private_message', {
+                'msg': message,
+                'from': 'Me',
+                'target': target_user,
+                'timestamp': timestamp,
+                'is_sender': True
+            }, to=request.sid)
         else:
-            emit('status', {'msg': f"User '{target_user}' not found or is offline.", 'type': "error"}, to=request.sid)
+            emit('status', {'msg': f"User '{target_user}' not found or is offline.", 'type': 'error'}, to=request.sid)
     else:
         room = data.get('room', 'General')
         if room not in app.config['CHAT_ROOMS']:
             return
         emit('message', {'msg': message, 'username': username, 'room': room, 'timestamp': timestamp}, room=room)
+
+@socketio.on('share_public_key')
+def handle_share_public_key(data):
+    username = session['display_name']
+    public_key = data.get('publicKey')
+    if public_key:
+        user_public_keys[username] = public_key
+        emit('public_key', {'username': username, 'publicKey': public_key}, broadcast=True)
+        logger.info(f"Public key shared for user: {username}")
+
+@socketio.on('request_public_key')
+def handle_request_public_key(data):
+    target = data.get('target')
+    if target and target in user_public_keys:
+        emit('public_key', {'username': target, 'publicKey': user_public_keys[target]}, broadcast=True)
+        logger.info(f"Public key requested and sent for user: {target}")
+
+@socketio.on('active_users_request')
+def handle_active_users_request():
+    username = session['display_name']
+    emit('active_users', {
+        'users': [user['username'] for user in active_users.values()]
+    }, broadcast=True)
 
 if __name__ == "__main__":
     with app.app_context():
