@@ -95,10 +95,12 @@ Node.js (for client-side JavaScript)
 
 *3. Chat Interface*
 ---
-![Login Screenshot](screenshot/nickname.png)
+![Login Screenshot](screenshot/nickname%20.png)
 
 
 *Description: Depicts the main chat window with the room list, active users, message input, and a sample public message.*
+
+---
 
 4. Private Messaging
 
