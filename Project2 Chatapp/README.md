@@ -88,7 +88,8 @@ eventlet # Asynchronous I/O library for WebSocket support with Gunicorn
 *2. Registration Page*
 ---
 
-![Login Screenshot](screenshot/chat_screen.png)
+
+![Login Screenshot](screenshot/nickname%20.png)
 
 *Description: Displays the registration form with username, password, and confirm password fields, plus a success or error message.*
 
@@ -96,7 +97,7 @@ eventlet # Asynchronous I/O library for WebSocket support with Gunicorn
 
 *3. Chat Interface*
 ---
-![Login Screenshot](screenshot/nickname%20.png)
+![Login Screenshot](screenshot/chat_screen.png)
 
 
 *Description: Depicts the main chat window with the room list, active users, message input, and a sample public message.*
